@@ -30,13 +30,13 @@ Parser of BRITE topologies to OMNeT ++ projects(written in **C**, **not compatib
 ![Alt Text](https://github.com/gistnetserv-uah/Tools/blob/master/parsers/topology/OMNeT-ned/Images/4.JPG)<!-- .element height="50%" width="50%" -->
 
 
-**we'll wait for OMNeT ++ to finish importing topologies**
+**We'll wait for OMNeT ++ to finish importing topologies**
 
 
 ![Alt Text](https://github.com/gistnetserv-uah/Tools/blob/master/parsers/topology/OMNeT-ned/Images/5.jpg)<!-- .element height="50%" width="50%" -->
 
 
-**It would be done**
+**It would be done :turtle:**
 
 
 ![Alt Text](https://github.com/gistnetserv-uah/Tools/blob/master/parsers/topology/OMNeT-ned/Images/6.JPG)<!-- .element height="50%" width="50%" -->
