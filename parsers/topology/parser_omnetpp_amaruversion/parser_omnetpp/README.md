@@ -4,6 +4,8 @@
 
 Parser of BRITE topologies to OMNeT++ projects(written in **C**, **not compatible for linux**) 
 
+I modified the node.cc file from @a-s-m-asadujjaman to generate results for each time that simulation is launched, moreover correcting the memory leaks that other file had.You've to change the constant string of node_DC.cc(line 614) for each topology, I haven't had enough time to automate that aspect, it remains as a future improvement :smile:
+
 ## How to import parsed topologies to OMNeT++
 
 **First of all, start OMNeT ++ and select as workspace the directory called "*Omnetpp_workspace*" created by the parser.**
