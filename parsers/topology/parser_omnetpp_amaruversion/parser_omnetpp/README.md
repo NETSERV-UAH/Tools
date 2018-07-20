@@ -9,7 +9,7 @@
 **First of all, start OMNeT ++ and select as workspace the directory called "*Omnetpp_workspace*" created by the parser.**
 
 
-![Alt Text](https://github.com/gistnetservuah/Tools/edit/master/parsers/topology/parser_omnetpp_amaruversion/parser_omnetpp/Images/1.JPG)<!-- .element height="50%" width="50%" class="center" -->
+![Alt Text](https://github.com/gistnetserv-uah/Tools/blob/master/parsers/topology/parser_omnetpp_amaruversion/parser_omnetpp/Images/1.JPG)
 
 
 **We will see something like this, skip tutorials and overview.**
