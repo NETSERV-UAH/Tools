@@ -1,0 +1,7 @@
+-- Num.Nodes: 7 | Num.Nodes WithoutAMAC: 0 | Total AMACs: 1056 | Conv.Time: 27.951970 ms | N: 40 | P: 5 | L: 5 | Node connected to SDNcontroller: nodo7 --
+-- Num.Nodes: 7 | Num.Nodes WithoutAMAC: 0 | Total AMACs: 1056 | Conv.Time: 27.019640 ms | N: 40 | P: 5 | L: 5 | Node connected to SDNcontroller: nodo6 --
+-- Num.Nodes: 7 | Num.Nodes WithoutAMAC: 0 | Total AMACs: 1056 | Conv.Time: 25.658800 ms | N: 40 | P: 5 | L: 5 | Node connected to SDNcontroller: nodo5 --
+-- Num.Nodes: 7 | Num.Nodes WithoutAMAC: 0 | Total AMACs: 1056 | Conv.Time: 24.621730 ms | N: 40 | P: 5 | L: 5 | Node connected to SDNcontroller: nodo4 --
+-- Num.Nodes: 7 | Num.Nodes WithoutAMAC: 0 | Total AMACs: 1056 | Conv.Time: 24.363780 ms | N: 40 | P: 5 | L: 5 | Node connected to SDNcontroller: nodo3 --
+-- Num.Nodes: 7 | Num.Nodes WithoutAMAC: 0 | Total AMACs: 1056 | Conv.Time: 24.486760 ms | N: 40 | P: 5 | L: 5 | Node connected to SDNcontroller: nodo2 --
+-- Num.Nodes: 7 | Num.Nodes WithoutAMAC: 0 | Total AMACs: 1056 | Conv.Time: 27.060250 ms | N: 40 | P: 5 | L: 5 | Node connected to SDNcontroller: nodo1 --
