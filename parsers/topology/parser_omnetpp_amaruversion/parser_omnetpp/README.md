@@ -33,7 +33,7 @@ Parser of BRITE topologies to OMNeT++ projects(written in **C**, **not compatibl
 **We'll wait for OMNeT ++ to finish importing topologies**
 
 
-![Alt Text](https://github.com/gistnetserv-uah/Tools/blob/master/parsers/topology/parser_omnetpp_amaruversion/parser_omnetpp/Images/5.JPG)<!-- .element height="50%" width="50%" -->
+![Alt Text](https://github.com/gistnetserv-uah/Tools/blob/master/parsers/topology/parser_omnetpp_amaruversion/parser_omnetpp/Images/5.jpg)<!-- .element height="50%" width="50%" -->
 
 
 **It would be done :turtle:**
