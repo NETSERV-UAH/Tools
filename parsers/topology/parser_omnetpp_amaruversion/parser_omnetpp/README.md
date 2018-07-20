@@ -4,7 +4,8 @@
 
 Parser of BRITE topologies to OMNeT++ projects(written in **C**, **not compatible for linux**) 
 
-I modified the node.cc file from [@a-s-m-asadujjaman](https://github.com/a-s-m-asadujjaman) to generate results for each time that simulation is launched, moreover correcting the memory leaks that other file had.You've to change the constant string of node_DC.cc(line 614) for each topology. The only thing that affects the execution of the simulation is in the name with which the results are saved.
+I modified the node.cc file from [@a-s-m-asadujjaman](https://github.com/a-s-m-asadujjaman) to generate results for each time that simulation is launched, moreover correcting the memory leaks that other file had. You've to change the constant string of node_DC.cc(line 614) for each topology. The only thing that affects the execution of the simulation is in the name with which the results are saved.
+
 I haven't had enough time to automate that aspect, it remains as a future improvement :smile:
 
 ## How to import parsed topologies to OMNeT++
