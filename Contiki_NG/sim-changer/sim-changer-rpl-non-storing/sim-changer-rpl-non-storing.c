@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Elisa Rojas(1), Hedayat Hosseini(2), and David Carrascal(1);
+ * Copyright (C) 2019 Elisa Rojas(1), Hedayat Hosseini(2), and David Carrascal(1);
  *                    (1) GIST, University of Alcala, Spain.
  *                    (2) CEIT, Amirkabir University of Technology (Tehran
  *                        Polytechnic), Iran.
@@ -102,17 +102,17 @@ int sim_parser(FILE *fp, char *destfile){
                   fprintf(destfp, "<script>\n");
                   fprintf(destfp, "TIMEOUT(180000, log.log(\"Not converged\\n\"));\nwhile (true) {\n\tlog.log(time + \" ID:\" + id + \" \" + msg + \"\\n\");\n\tif (msg.equals(\"Periodic Statistics: convergence time ended\"))\n\t\tlog.testOK();\n\tYIELD();\n}\n//log.testOK();\nlog.testFailed(); /* Report test failure and quit */\n");
                   fprintf(destfp, "</script>\n");
-                }else if(check_condition[0]){ //Number of DIS
+                }else if(check_condition[0]){
                   fputs(new_line1, destfp);
-                }else if(check_condition[1]){ //Number of DIO
+                }else if(check_condition[1]){
                   fputs(new_line2, destfp);
-                }else if(check_condition[2]){ //Number of DAO
+                }else if(check_condition[2]){
                   fputs(new_line3, destfp);
-                }else if(check_condition[3]){ //Number of DAO
+                }else if(check_condition[3]){
                   fputs(new_line4, destfp);
-                }else if(check_condition[4]){ //Number of DAO
+                }else if(check_condition[4]){
                   fputs(new_line5, destfp);
-                }else if(check_condition[5]){ //Number of DAO
+                }else if(check_condition[5]){
                   fputs(new_line6, destfp);
                 }else
                   fputs(line, destfp);
