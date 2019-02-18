@@ -1,7 +1,8 @@
 #!/bin/bash
 
 
-cd ~/contiki-ng/examples/rpl-storing/sky-testscript/simulation
+#cd ~/contiki-ng/examples/rpl-storing/sky-testscript/simulation
+cd ~/contiki-ng/examples/rpl-storing/cooja-testscript/simulation
 
 #Compile sim changer
 gcc -o sim-changer-rpl-storing.out ~/contiki-ng/examples/sim-changer-rpl-storing/sim-changer-rpl-storing.c
@@ -21,3 +22,5 @@ for i in `ls`; do
 	rm -rf new-sim
 	cd ..
 done
+
+rm sim-changer-rpl-storing.out
