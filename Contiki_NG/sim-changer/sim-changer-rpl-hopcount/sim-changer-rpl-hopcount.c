@@ -10,7 +10,7 @@
 #include <string.h>
 
 
-#define CONDITION_MAX 2
+#define CONDITION_MAX 3
 #define MAX_LINE_LEN 500
 //#define MOTE_TYPE 1 //SKY
 //#define MOTE_TYPE 2 //COOJA
@@ -84,8 +84,14 @@ int sim_parser(FILE *fp, char *destfile){
                 common_check = 1;
                 check_condition[0] = common_check && (strstr(line,old_line1));
                 check_condition[1] = common_check && (strstr(line,old_line2));
+                check_condition[2] = common_check && (strstr(line,"<script>"));
 
-                if(check_condition[0]){
+                if (check_condition[2]){
+                  while (!strstr(fgets(line,MAX_LINE_LEN,fp), "</script>"));
+                  fprintf(destfp, "<script>\n");
+                  fprintf(destfp, "TIMEOUT(180000, log.log(\"Not converged\\n\"));\nwhile (true) {\n\tlog.log(time + \" ID:\" + id + \" \" + msg + \"\\n\");\n\tif (msg.equals(\"Periodic Statistics: convergence time ended + hops\"))\n\t\tlog.testOK();\n\tYIELD();\n}\n//log.testOK();\nlog.testFailed(); /* Report test failure and quit */\n");
+                  fprintf(destfp, "</script>\n");
+                }else if(check_condition[0]){
                   fputs(new_line1, destfp);
                 }else if(check_condition[1]){
                   fputs(new_line2, destfp);
