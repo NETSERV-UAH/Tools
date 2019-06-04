@@ -10,14 +10,15 @@
 #include <string.h>
 
 
-#define CONDITION_MAX 3
+#define CONDITION_MAX 5
 #define MAX_LINE_LEN 500
-//#define MOTE_TYPE 1 //SKY
-//#define MOTE_TYPE 2 //COOJA
+#define MOTE_TYPE 1 //1:SKY, 2:Cooja
 #define MOP 1 //1:storing, 2:nonstoring
 
 char old_line1[MAX_LINE_LEN], new_line1[MAX_LINE_LEN];
 char old_line2[MAX_LINE_LEN], new_line2[MAX_LINE_LEN];
+char old_line3[MAX_LINE_LEN], new_line3[MAX_LINE_LEN];
+char old_line4[MAX_LINE_LEN], new_line4[MAX_LINE_LEN];
 
 
 int main(int argc, char *argv[])
@@ -26,18 +27,36 @@ int main(int argc, char *argv[])
 
     char destfile[100];
     int sim_parser(FILE *, char *);
-#if MOP == 1
+#if MOP == 1 //Storing
+#if MOTE_TYPE == 1  //Sky
+  strcpy(old_line1, "      <source EXPORT=\"discard\">[CONTIKI_DIR]/examples/rpl-storing/sky-testscript/code/sink.c</source>");
+  strcpy(new_line1, "      <source EXPORT=\"discard\">[CONTIKI_DIR]/examples/rpl-storingHC/sky-testscript/code/sink.c</source>\n");
+
+  strcpy(old_line2, "      <firmware EXPORT=\"copy\">[CONTIKI_DIR]/examples/rpl-storing/sky-testscript/code/sink.sky</firmware>");
+  strcpy(new_line2, "      <firmware EXPORT=\"copy\">[CONTIKI_DIR]/examples/rpl-storingHC/sky-testscript/code/sink.sky</firmware>\n");
+
+  strcpy(old_line3, "      <source EXPORT=\"discard\">[CONTIKI_DIR]/examples/rpl-storing/sky-testscript/code/mote.c</source>");
+  strcpy(new_line3, "      <source EXPORT=\"discard\">[CONTIKI_DIR]/examples/rpl-storingHC/sky-testscript/code/mote.c</source>\n");
+
+  strcpy(old_line4, "      <firmware EXPORT=\"copy\">[CONTIKI_DIR]/examples/rpl-storing/sky-testscript/code/mote.sky</firmware>");
+  strcpy(new_line4, "      <firmware EXPORT=\"copy\">[CONTIKI_DIR]/examples/rpl-storingHC/sky-testscript/code/mote.sky</firmware>\n");
+
+#elif MOTE_TYPE == 2  //Cooja
   strcpy(old_line1, "     <source>[CONTIKI_DIR]/examples/rpl-storing/sky-testscript/code/sink.c</source>");
   strcpy(new_line1, "     <source>[CONTIKI_DIR]/examples/rpl-storingHC/sky-testscript/code/sink.c</source>\n");
 
   strcpy(old_line2, "      <source>[CONTIKI_DIR]/examples/rpl-storing/sky-testscript/code/mote.c</source>");
   strcpy(new_line2, "      <source>[CONTIKI_DIR]/examples/rpl-storingHC/sky-testscript/code/mote.c</source>\n");
-#elif MOP == 2
+#endif
+
+#elif MOP == 2  //Non-Storing
+#if MOTE_TYPE == 2  //Cooja
     strcpy(old_line1, "     <source>[CONTIKI_DIR]/examples/rpl-non-storing/sky-testscript/code/sink.c</source>");
     strcpy(new_line1, "     <source>[CONTIKI_DIR]/examples/rpl-non-storingHC/sky-testscript/code/sink.c</source>\n");
 
     strcpy(old_line2, "      <source>[CONTIKI_DIR]/examples/rpl-non-storing/sky-testscript/code/mote.c</source>");
     strcpy(new_line2, "      <source>[CONTIKI_DIR]/examples/rpl-non-storingHC/sky-testscript/code/mote.c</source>\n");
+#endif
 #endif
 
     printf("\nSim changer 2019\n\n");
@@ -84,17 +103,29 @@ int sim_parser(FILE *fp, char *destfile){
                 common_check = 1;
                 check_condition[0] = common_check && (strstr(line,old_line1));
                 check_condition[1] = common_check && (strstr(line,old_line2));
-                check_condition[2] = common_check && (strstr(line,"<script>"));
+                #if MOTE_TYPE == 1  //Sky
+                check_condition[2] = common_check && (strstr(line,old_line3));
+                check_condition[3] = common_check && (strstr(line,old_line4));
+                #elif
+                check_condition[4] = false;
+                check_condition[5] = false;
+                #endif
 
-                if (check_condition[2]){
+                check_condition[4] = common_check && (strstr(line,"<script>"));
+
+                if (check_condition[4]){
                   while (!strstr(fgets(line,MAX_LINE_LEN,fp), "</script>"));
                   fprintf(destfp, "<script>\n");
-                  fprintf(destfp, "TIMEOUT(180000, log.log(\"Not converged\\n\"));\nwhile (true) {\n\tlog.log(time + \" ID:\" + id + \" \" + msg + \"\\n\");\n\tif (msg.equals(\"Periodic Statistics: convergence time ended + hops\"))\n\t\tlog.testOK();\n\tYIELD();\n}\n//log.testOK();\nlog.testFailed(); /* Report test failure and quit */\n");
+                  fprintf(destfp, "TIMEOUT(180000, log.log(\"Not converged\\n\"));\nwhile (true) {\n\tlog.log(time + \" ID:\" + id + \" \" + msg + \"\\n\");\n\tif (msg.equals(\"Periodic Statistics: convergence time ended\"))\n\t\tlog.testOK();\n\tYIELD();\n}\n//log.testOK();\nlog.testFailed(); /* Report test failure and quit */\n");
                   fprintf(destfp, "</script>\n");
                 }else if(check_condition[0]){
                   fputs(new_line1, destfp);
                 }else if(check_condition[1]){
                   fputs(new_line2, destfp);
+                }else if(check_condition[2]){
+                  fputs(new_line3, destfp);
+                }else if(check_condition[3]){
+                  fputs(new_line4, destfp);
                 }else
                   fputs(line, destfp);
 
