@@ -12,8 +12,8 @@
 
 #define CONDITION_MAX 5
 #define MAX_LINE_LEN 500
-#define MOTE_TYPE 1 //1:SKY, 2:Cooja
-#define MOP 1 //1:storing, 2:nonstoring
+#define MOTE_TYPE 2 //1:SKY, 2:Cooja
+#define MOP 2 //1:storing, 2:nonstoring
 
 char old_line1[MAX_LINE_LEN], new_line1[MAX_LINE_LEN];
 char old_line2[MAX_LINE_LEN], new_line2[MAX_LINE_LEN];
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     char destfile[100];
     int sim_parser(FILE *, char *);
 #if MOP == 1 //Storing
-#if MOTE_TYPE == 1  //Sky
+#if MOTE_TYPE == 1  //Storing.Sky
   strcpy(old_line1, "      <source EXPORT=\"discard\">[CONTIKI_DIR]/examples/rpl-storing/sky-testscript/code/sink.c</source>");
   strcpy(new_line1, "      <source EXPORT=\"discard\">[CONTIKI_DIR]/examples/rpl-storingHC/sky-testscript/code/sink.c</source>\n");
 
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
   strcpy(old_line4, "      <firmware EXPORT=\"copy\">[CONTIKI_DIR]/examples/rpl-storing/sky-testscript/code/mote.sky</firmware>");
   strcpy(new_line4, "      <firmware EXPORT=\"copy\">[CONTIKI_DIR]/examples/rpl-storingHC/sky-testscript/code/mote.sky</firmware>\n");
 
-#elif MOTE_TYPE == 2  //Cooja
+#elif MOTE_TYPE == 2  //Storing.Cooja
   strcpy(old_line1, "     <source>[CONTIKI_DIR]/examples/rpl-storing/sky-testscript/code/sink.c</source>");
   strcpy(new_line1, "     <source>[CONTIKI_DIR]/examples/rpl-storingHC/sky-testscript/code/sink.c</source>\n");
 
@@ -50,7 +50,20 @@ int main(int argc, char *argv[])
 #endif
 
 #elif MOP == 2  //Non-Storing
-#if MOTE_TYPE == 2  //Cooja
+#if MOTE_TYPE == 1  //Non-Storing.Sky
+  strcpy(old_line1, "      <source EXPORT=\"discard\">[CONTIKI_DIR]/examples/rpl-non-storing/sky-testscript/code/sink.c</source>");
+  strcpy(new_line1, "      <source EXPORT=\"discard\">[CONTIKI_DIR]/examples/rpl-non-storingHC/sky-testscript/code/sink.c</source>\n");
+
+  strcpy(old_line2, "      <firmware EXPORT=\"copy\">[CONTIKI_DIR]/examples/rpl-non-storing/sky-testscript/code/sink.sky</firmware>");
+  strcpy(new_line2, "      <firmware EXPORT=\"copy\">[CONTIKI_DIR]/examples/rpl-non-storingHC/sky-testscript/code/sink.sky</firmware>\n");
+
+  strcpy(old_line3, "      <source EXPORT=\"discard\">[CONTIKI_DIR]/examples/rpl-non-storing/sky-testscript/code/mote.c</source>");
+  strcpy(new_line3, "      <source EXPORT=\"discard\">[CONTIKI_DIR]/examples/rpl-non-storingHC/sky-testscript/code/mote.c</source>\n");
+
+  strcpy(old_line4, "      <firmware EXPORT=\"copy\">[CONTIKI_DIR]/examples/rpl-non-storing/sky-testscript/code/mote.sky</firmware>");
+  strcpy(new_line4, "      <firmware EXPORT=\"copy\">[CONTIKI_DIR]/examples/rpl-non-storingHC/sky-testscript/code/mote.sky</firmware>\n");
+
+#elif MOTE_TYPE == 2  //Non-Storing.Cooja
     strcpy(old_line1, "     <source>[CONTIKI_DIR]/examples/rpl-non-storing/sky-testscript/code/sink.c</source>");
     strcpy(new_line1, "     <source>[CONTIKI_DIR]/examples/rpl-non-storingHC/sky-testscript/code/sink.c</source>\n");
 
@@ -106,9 +119,9 @@ int sim_parser(FILE *fp, char *destfile){
                 #if MOTE_TYPE == 1  //Sky
                 check_condition[2] = common_check && (strstr(line,old_line3));
                 check_condition[3] = common_check && (strstr(line,old_line4));
-                #elif
-                check_condition[4] = false;
-                check_condition[5] = false;
+                #else
+                check_condition[2] = 0;
+                check_condition[3] = 0;
                 #endif
 
                 check_condition[4] = common_check && (strstr(line,"<script>"));
