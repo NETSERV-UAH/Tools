@@ -13,7 +13,7 @@
 #define CONDITION_MAX 5
 #define MAX_LINE_LEN 500
 #define MOTE_TYPE 2 //1:SKY, 2:Cooja
-#define MOP 2 //1:storing, 2:nonstoring
+#define MOP 1 //1:storing, 2:nonstoring
 
 char old_line1[MAX_LINE_LEN], new_line1[MAX_LINE_LEN];
 char old_line2[MAX_LINE_LEN], new_line2[MAX_LINE_LEN];

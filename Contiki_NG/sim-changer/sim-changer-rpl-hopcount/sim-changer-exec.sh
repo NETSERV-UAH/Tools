@@ -2,9 +2,9 @@
 
 
 #cd ~/contiki-ng/examples/rpl-storingHC/sky-testscript/simulation
-#cd ~/contiki-ng/examples/rpl-storingHC/cooja-testscript/simulation
+cd ~/contiki-ng/examples/rpl-storingHC/cooja-testscript/simulation
 #cd ~/contiki-ng/examples/rpl-non-storingHC/sky-testscript/simulation
-cd ~/contiki-ng/examples/rpl-non-storingHC/cooja-testscript/simulation
+#cd ~/contiki-ng/examples/rpl-non-storingHC/cooja-testscript/simulation
 
 
 #Compile sim changer
