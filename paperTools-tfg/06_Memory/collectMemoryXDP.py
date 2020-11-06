@@ -9,11 +9,16 @@ def generateMemoryDiff():
         with open(filediff, 'r') as file:
             for line in file:
                 str_mean = line.split(' ')[0]
-                tmep = line.split(' ')[item for item in templist if item]
-                print(str(mem_mean))
-                stats[filediff].append([str_mean, mem_mean])
+                mem_mean = [item for item in line.split(' ') if item]
+                if len(mem_mean) == 3:
+                    stats[filediff].append([str_mean, mem_mean[1]])
+                
+    # Print or save data
+    for items in range(0,len(stats[INPUT_FILES[0]])):
+        print('[+] '+stats[INPUT_FILES[0]][items][0]+' = '+ str(int(stats[INPUT_FILES[1]][items][1])-int(stats[INPUT_FILES[0]][items][1])))
 
-    #print(str(stats))
+
+
 if __name__ == '__main__':
     generateMemoryDiff()
 
