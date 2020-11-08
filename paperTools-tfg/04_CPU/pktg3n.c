@@ -125,7 +125,7 @@ int main(int argc, char **argv)
 		//printf("%d packets sent\r", sent);
 		//fflush(stdout);
 		
-		//usleep(500);	// 1 Mpps
+		usleep(0.001);	// 1 Mpps
 	}
 	
 	free(packet);
