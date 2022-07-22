@@ -129,7 +129,9 @@ public class Mobility extends VisPlugin {
         e.time = (long) (Double.parseDouble(args[1])*1000.0*Simulation.MILLISECOND); /* s -> us */
         e.posX = Double.parseDouble(args[2]);
         e.posY = Double.parseDouble(args[3]);
-
+//Extra Begin
+        e.posZ = Double.parseDouble(args[4]);
+//Extra End
         entriesList.add(e);
       }
       entries = entriesList.toArray(new Move[0]);
@@ -171,7 +173,10 @@ public class Mobility extends VisPlugin {
       if (move.moteIndex < simulation.getMotesCount()) {
         Mote mote = simulation.getMote(move.moteIndex);
         Position pos = mote.getInterfaces().getPosition();
-        pos.setCoordinates(move.posX, move.posY, pos.getZCoordinate());
+//Extra Begin
+        //pos.setCoordinates(move.posX, move.posY, pos.getZCoordinate());
+        pos.setCoordinates(move.posX, move.posY, move.posZ);
+//Extra End
         /*logger.info(simulation.getSimulationTimeMillis() + ": Executing " + move);*/
       } else {
         /*log.addMessage(simulation.getSimulationTimeMillis() + ": Bad move, no mote " + move.moteIndex);
@@ -201,8 +206,10 @@ public class Mobility extends VisPlugin {
   class Move {
     long time;
     int moteIndex;
-    double posX, posY;
-
+//Extra Begin
+    //double posX, posY;
+    double posX, posY, posZ;
+//Extra End
     public String toString() {
       return "MOVE: mote " + moteIndex + " -> [" + posX + "," + posY + "] @ " + time/Simulation.MILLISECOND;
     }
